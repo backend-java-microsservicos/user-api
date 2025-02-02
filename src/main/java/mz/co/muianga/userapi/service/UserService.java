@@ -1,5 +1,6 @@
 package mz.co.muianga.userapi.service;
 
+import mz.co.muianga.userapi.converter.DTOConverter;
 import mz.co.muianga.userapi.dto.UserDTO;
 import mz.co.muianga.userapi.model.User;
 import mz.co.muianga.userapi.repository.UserRepository;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -21,19 +21,19 @@ public class UserService {
     public List<UserDTO> getAll() {
         List<User> usuarios = userRepository.findAll();
         return usuarios.stream()
-                .map(UserDTO::convert)
+                .map(DTOConverter::convert)
                 .toList();
 
     }
 
     public UserDTO findById(Long id) {
         Optional<User> usuario = userRepository.findById(id);
-        return usuario.map(UserDTO::convert).orElse(null);
+        return usuario.map(DTOConverter::convert).orElse(null);
 
     }
 
     public UserDTO save(UserDTO userDTO) {
-        return UserDTO.convert(userRepository.save(User.convert(userDTO)));
+        return DTOConverter.convert(userRepository.save(DTOConverter.convert(userDTO)));
     }
 
     public UserDTO delete(long id) {
@@ -44,9 +44,9 @@ public class UserService {
     }
 
     public UserDTO findByCpf(String cpf) {
-        var user = userRepository.findByCPF(cpf);
+        var user = userRepository.findByCpf(cpf);
         if (user != null) {
-            return UserDTO.convert(user);
+            return DTOConverter.convert(user);
         }
         return null;
     }
@@ -54,7 +54,7 @@ public class UserService {
     public List<UserDTO> queryByName(String name) {
         List<User> usuarios = userRepository.queryByNomeLike(name);
         return usuarios.stream()
-                .map(UserDTO::convert)
+                .map(DTOConverter::convert)
                 .toList();
     }
 }
