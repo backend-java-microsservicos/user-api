@@ -1,6 +1,6 @@
 package mz.co.muianga.userapi.controller;
 
-import mz.co.muianga.userapi.dto.UserDTO;
+import mz.co.muianga.shoppingclient.dto.UserDTO;
 import mz.co.muianga.userapi.service.UserService;
 import org.springframework.web.bind.annotation.*;
 

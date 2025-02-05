@@ -1,7 +1,7 @@
 package mz.co.muianga.userapi.service;
 
+import mz.co.muianga.shoppingclient.dto.UserDTO;
 import mz.co.muianga.userapi.converter.DTOConverter;
-import mz.co.muianga.userapi.dto.UserDTO;
 import mz.co.muianga.userapi.model.User;
 import mz.co.muianga.userapi.repository.UserRepository;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package mz.co.muianga.userapi.converter;
 
-import mz.co.muianga.userapi.dto.UserDTO;
+import mz.co.muianga.shoppingclient.dto.UserDTO;
 import mz.co.muianga.userapi.model.User;
 
 public class DTOConverter {
