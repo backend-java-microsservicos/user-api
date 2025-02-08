@@ -22,5 +22,7 @@ public class User {
 
     @Column(name = "data_cadastro")
     private Date dataCadastro;
+    
+    private String key;
 
 }

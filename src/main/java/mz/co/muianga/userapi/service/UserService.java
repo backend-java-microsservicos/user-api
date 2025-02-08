@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -35,6 +36,7 @@ public class UserService {
     }
 
     public UserDTO save(UserDTO userDTO) {
+        userDTO.setKey(UUID.randomUUID().toString());
         userDTO.setDataCadastro(new Date());
         return DTOConverter.convert(userRepository.save(DTOConverter.convert(userDTO)));
     }
@@ -46,8 +48,8 @@ public class UserService {
         return null;
     }
 
-    public UserDTO findByCpf(String cpf) {
-        var user = userRepository.findByCpf(cpf);
+    public UserDTO findByCpf(String cpf, String key) {
+        var user = userRepository.findByCpfAndKey(cpf, key);
         if (user != null) {
             return DTOConverter.convert(user);
         }
