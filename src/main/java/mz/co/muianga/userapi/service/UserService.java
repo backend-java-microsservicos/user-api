@@ -1,11 +1,13 @@
 package mz.co.muianga.userapi.service;
 
 import mz.co.muianga.shoppingclient.dto.UserDTO;
+import mz.co.muianga.shoppingclient.exception.UserNotFoundException;
 import mz.co.muianga.userapi.converter.DTOConverter;
 import mz.co.muianga.userapi.model.User;
 import mz.co.muianga.userapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +35,7 @@ public class UserService {
     }
 
     public UserDTO save(UserDTO userDTO) {
+        userDTO.setDataCadastro(new Date());
         return DTOConverter.convert(userRepository.save(DTOConverter.convert(userDTO)));
     }
 
@@ -48,7 +51,7 @@ public class UserService {
         if (user != null) {
             return DTOConverter.convert(user);
         }
-        return null;
+        throw new UserNotFoundException();
     }
 
     public List<UserDTO> queryByName(String name) {

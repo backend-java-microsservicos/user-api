@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/{cpf}")
-    public UserDTO getUsersFiltro(@PathVariable("cpf") String cpf) {
+    public UserDTO findByCpf(@PathVariable("cpf") String cpf) {
         return userService.findByCpf(cpf);
     }
 
